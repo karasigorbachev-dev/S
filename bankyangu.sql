@@ -1,0 +1,3 @@
+mysql> CREATE TABLE accounts(account_number INT,full_name VARCHAR(20), birth_date DATE,address VARCHAR(50),email VARCHAR(50),phone VARCHAR(12),national_id_number INT UNIQUE,PRIMARY KEY(account_number));
+
+CREATE TABLE transactions(transaction_id VARCHAR(6), amount INT,account_number INT,type ENUM('debit','credit'),PRIMARY KEY (transaction_id),FOREIGN KEY (account_number) REFERENCES accounts(account_number));
