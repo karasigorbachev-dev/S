@@ -97,3 +97,35 @@ INSERT INTO donations (donor_name, email, amount, project_id, donation_date, pay
 ('Sarah Wanjiku', 'sarah.wanjiku@email.com', 15000.00, 3, '2025-05-15', 'PayPal'),
 ('Tech For Nature Initiative', 'tech4nature@ngo.org', 120000.00, 1, '2025-05-20', 'Bank Transfer'),
 ('Peter Maina', 'maina.peter@email.com', 8000.00, 4, '2025-05-22', 'M-Pesa');
+
+select * from locations;
+select * from organizations;
+select * from projects;
+select * from volunteers;
+select * from donations;
+
+select p.project_name, l.location_name, o.org_name, p.status, p.budget
+from projects p
+join locations l on p.location_id = l.location_id
+join organizations o on p.org_id = o.org_id;
+
+select d.donor_name, p.project_name, d.amount, d.donation_date
+from donations d
+join projects p on d.project_id = p.project_id; 
+
+select v.full_name, p.project_name, v.skills
+from volunteers v
+join projects p on v.project_id = p.project_id;
+
+select p.project_name, l.location_name, o.org_name, p.start_date, p.end_date, p.status, p.budget, p.description
+from projects p
+join locations l on p.location_id = l.location_id
+join organizations o on p.org_id = o.org_id;
+
+SELECT
+    l.location_name,
+    COUNT(p.project_id) AS project_count,
+    SUM(p.budget) AS total_budget
+FROM locations l
+LEFT JOIN projects p ON l.location_id = p.location_id
+GROUP BY l.location_name;

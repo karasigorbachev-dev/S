@@ -184,7 +184,12 @@ FROM talents
 GROUP BY age_group
 ORDER BY age_group;
 
-
+SELECT 
+    t.full_name,
+    t.sport,
+FROM talents
+INNER JOIN wishlist w ON t.email = w.talent_email
+WHERE w.status = 'successful';
 --
 
 
